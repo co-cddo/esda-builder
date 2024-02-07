@@ -1,24 +1,19 @@
-# README
+# ESDA Builder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application presents a sequence of web forms that are used to build an ESDA submission
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+To run this application, you will need Ruby and Postgres installed locally.
 
-* System dependencies
+To install the app clone the application and then cd into the app root.
+Then run the following commands:
 
-* Configuration
+- bundle
+- rails javascript:build
+- rails css:build
+- rails db:create
+- rails db:migrate
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You should then be able to start a server instance using the command `rails s`.
+The application should then be available at http://localhost:3000
