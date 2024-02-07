@@ -1,0 +1,19 @@
+<div id="<%= dom_id @item %>">
+  <h1 class="govuk-heading-l">
+    <%= @item.name %>
+  </h1>
+
+  <h2 class="govuk-heading-m">Metadata JSON</h2>
+  <pre>
+<%= JSON.pretty_generate(@item.metadata) %>
+  </pre>
+</div>
+
+<div>
+  <p>
+    <%= govuk_link_to "Edit this item", edit_item_path(@item) %> |
+    <%= govuk_link_to "Back to items", items_path %>
+  </p>
+
+  <%= button_to "Destroy this item", @item, method: :delete, class: "govuk-button govuk-button--warning" %>
+</div>

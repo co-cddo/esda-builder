@@ -1,0 +1,26 @@
+<h1 class="govuk-heading-l">Items</h1>
+
+<%= govuk_link_to("New item", new_item_path) %>
+
+<div id="items">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Name</th>
+        <th scope="col" class="govuk-table__header">Link</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <% @items.each do |item| %>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <%= item.name %>
+          </td>
+          <td class="govuk-table__cell">
+            <%= link_to "Show this item", item %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

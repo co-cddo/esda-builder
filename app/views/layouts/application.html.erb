@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EsdaBuilder</title>
+    <title>ESDA Builder</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,7 +13,11 @@
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
     </script>
-    <%= govuk_header(service_name: "ESDA Builder")  %>
+    <%=
+      govuk_header(service_name: "ESDA Builder") do |header|
+        header.with_navigation_item(text: 'Items', href: items_path, active: current_page?(root_path))
+      end
+    %>
 
     <div class="govuk-width-container ">
       <%= govuk_phase_banner(
@@ -23,6 +27,9 @@
       <main class="govuk-main-wrapper " id="main-content" role="main">
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
+            <%= content_tag(:p, notice, class: 'notice', style: "color: green") if notice.present? %>
+            <%= content_tag(:p, alert, class: 'alert', style: "color: red") if alert.present? %>
+
             <%= yield %>
           </div>
         </div>
