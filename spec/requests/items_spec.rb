@@ -38,6 +38,10 @@ RSpec.describe "/items", type: :request do
   end
 
   describe "POST /create" do
+    let(:valid_attributes) do
+      { title: Faker::Company.name }
+    end
+
     context "with valid parameters" do
       it "creates a new Item" do
         expect {

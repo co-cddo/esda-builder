@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    item
+    initial_form
   end
 
   # GET /items/1/edit
@@ -21,10 +21,10 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    item.attributes = item_params
+    form = initial_form
 
-    if item.save
-      redirect_to item_url(@item), notice: "Item was successfully created."
+    if form.save
+      redirect_to item_url(form.item), notice: "Item was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,6 +53,11 @@ private
 
   # Only allow a list of trusted parameters through.
   def item_params
-    params.require(:item).permit(:name, :metadata)
+    params.require(:item).permit(:title, :metadata, :name)
+  end
+
+  def initial_form
+    item = Item.new(metadata: {})
+    @form = TitleForm.new(item:, params:)
   end
 end
