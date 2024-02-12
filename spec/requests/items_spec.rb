@@ -83,7 +83,7 @@ RSpec.describe "/items", type: :request do
 
     it "redirects to the item" do
       patch item_url(item), params: { item: { alternative_title: } }
-      expect(response).to redirect_to(item_url(item))
+      expect(response).to redirect_to(edit_item_url(item))
     end
   end
 

@@ -1,6 +1,13 @@
 <h1 class="govuk-heading-l">Editing item</h1>
 
-<%= render "items/forms/#{@form.template}", form: @form %>
+<%= form_with(model: @form.item) do |f| %>
+  <%= render 'shared/form_errors', model: @form %>
+  <%= render "items/forms/#{@form.template}", form: f %>
+
+  <div>
+    <%= f.govuk_submit %>
+  </div>
+<% end %>
 
 <div>
   <%= govuk_link_to "Show this item", @item %> |
