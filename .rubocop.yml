@@ -6,3 +6,9 @@ inherit_gem:
 inherit_mode:
   merge:
     - Exclude
+
+Rails/SaveBang:
+  # Excluding in specs because it can be appropriate to test the resutls of a `save` call
+  # without returning the output from the `save` within the context of a single spec.
+  Exclude:
+    - 'spec/**/*'

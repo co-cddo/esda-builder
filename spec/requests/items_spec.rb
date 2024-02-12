@@ -38,6 +38,10 @@ RSpec.describe "/items", type: :request do
   end
 
   describe "POST /create" do
+    let(:valid_attributes) do
+      { title: Faker::Company.name }
+    end
+
     context "with valid parameters" do
       it "creates a new Item" do
         expect {
@@ -45,9 +49,9 @@ RSpec.describe "/items", type: :request do
         }.to change(Item, :count).by(1)
       end
 
-      it "redirects to the created item" do
+      it "redirects to the next step for item" do
         post items_url, params: { item: valid_attributes }
-        expect(response).to redirect_to(item_url(Item.last))
+        expect(response).to redirect_to(edit_item_url(Item.last))
       end
     end
 
@@ -65,29 +69,21 @@ RSpec.describe "/items", type: :request do
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) do
-        { name: Faker::Company.name, metadata: item.metadata }
-      end
+  describe "alternative title step" do
+    let(:steps) { ItemsController::STEPS }
+    let(:last_completed_step) { steps.keys[steps.keys.index(:alternative_title) - 1] }
+    let(:item) { create :item, last_completed_step: }
+    let(:alternative_title) { Faker::Company.name }
 
-      it "updates the requested item" do
-        patch item_url(item), params: { item: new_attributes }
-        item.reload
-        expect(item.name).to eq(new_attributes[:name])
-      end
-
-      it "redirects to the item" do
-        patch item_url(item), params: { item: new_attributes }
-        expect(response).to redirect_to(item_url(item))
-      end
+    it "updates the requested item" do
+      patch item_url(item), params: { item: { alternative_title: } }
+      item.reload
+      expect(item.metadata["alternativeTitle"]).to eq([alternative_title])
     end
 
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        patch item_url(item), params: { item: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
+    it "redirects to the item" do
+      patch item_url(item), params: { item: { alternative_title: } }
+      expect(response).to redirect_to(item_url(item))
     end
   end
 

@@ -1,4 +1,9 @@
 class ItemsController < ApplicationController
+  STEPS = {
+    title: TitleForm,
+    alternative_title: AlternativeTitleForm,
+  }.freeze
+
   # GET /items
   def index
     @items = Item.all
@@ -11,20 +16,18 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    item
+    form
   end
 
   # GET /items/1/edit
   def edit
-    item
+    form
   end
 
   # POST /items
   def create
-    item.attributes = item_params
-
-    if item.save
-      redirect_to item_url(@item), notice: "Item was successfully created."
+    if form.save
+      redirect_to edit_item_url(form.item), notice: "Item was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +35,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    if item.update(item_params)
+    if form.save
       redirect_to item_url(@item), notice: "Item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -48,11 +51,22 @@ class ItemsController < ApplicationController
 private
 
   def item
-    @item ||= params[:id].present? ? Item.find(params[:id]) : Item.new
+    @item ||= params[:id].present? ? Item.find(params[:id]) : Item.new(metadata: {})
   end
 
   # Only allow a list of trusted parameters through.
+  # REMOVE - params handled by form - so remove
   def item_params
-    params.require(:item).permit(:name, :metadata)
+    params.require(:item).permit(:title, :metadata, :name)
+  end
+
+  def form
+    @form ||= STEPS[step.to_sym].new(item:, params:)
+  end
+
+  def step
+    return STEPS.keys.first if item.last_completed_step.blank?
+
+    STEPS.keys[STEPS.keys.index(item.last_completed_step.to_sym) - 1].presence || STEPS.keys.first
   end
 end
