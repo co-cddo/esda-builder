@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   before_validation :json_parse_metadata
 
-  validates :name, :metadata, presence: true
+  validates :metadata, presence: true
 
   def json_parse_metadata
     return if metadata.blank?

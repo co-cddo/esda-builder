@@ -6,6 +6,7 @@ RSpec.describe "items workflow", type: :request do
       title: Faker::Company.name,
       alternative_title: Faker::Company.name,
       summary: Faker::Lorem.paragraph,
+      description: Faker::Lorem.paragraph,
     }
   end
 
