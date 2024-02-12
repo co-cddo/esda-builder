@@ -18,5 +18,13 @@ RSpec.describe TitleForm, type: :model do
       title_form.save
       expect(item.reload.name).to eq(title)
     end
+
+    context "when title blank" do
+      let(:title) { "" }
+
+      it "invalidates form" do
+        expect(title_form).to be_invalid
+      end
+    end
   end
 end
