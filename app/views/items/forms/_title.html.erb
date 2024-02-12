@@ -1,9 +1,1 @@
-<%= form_with(url: items_path, model: @form.item) do |form| %>
-  <%= render 'shared/form_errors', model: @form %>
-
-  <%= form.govuk_text_field :title %>
-
-  <div>
-    <%= form.govuk_submit %>
-  </div>
-<% end %>
+<%= form.govuk_text_field :title, value: form.object.metadata['title'] %>

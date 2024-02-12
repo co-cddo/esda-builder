@@ -41,4 +41,20 @@ RSpec.describe ItemWorkflow, type: :workflow do
       expect(item_workflow.form.params).to eq(params)
     end
   end
+
+  describe "#last_step?" do
+    it "defaults to false" do
+      expect(item_workflow.last_step?).to be_falsy
+    end
+
+    context "when items is at last step" do
+      # Item has completed penultimate and is currently at last
+      # So item last completed step is two from end
+      let(:item) { create :item, last_completed_step: steps.keys.last }
+
+      it "returns true" do
+        expect(item_workflow.last_step?).to be_truthy
+      end
+    end
+  end
 end

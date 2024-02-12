@@ -31,7 +31,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   def update
     if form.save
-      redirect_to item_url(form.item), notice: "Item was successfully updated."
+      target_url = ItemWorkflow.last_step?(item:) ? item_url(item) : edit_item_url(item)
+      redirect_to target_url, notice: "Item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
