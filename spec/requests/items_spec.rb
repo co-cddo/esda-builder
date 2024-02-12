@@ -70,7 +70,7 @@ RSpec.describe "/items", type: :request do
   end
 
   describe "alternative title step" do
-    let(:steps) { ItemsController::STEPS }
+    let(:steps) { ItemWorkflow::STEPS }
     let(:last_completed_step) { steps.keys[steps.keys.index(:alternative_title) - 1] }
     let(:item) { create :item, last_completed_step: }
     let(:alternative_title) { Faker::Company.name }
