@@ -1,9 +1,4 @@
 class ItemsController < ApplicationController
-  STEPS = {
-    title: TitleForm,
-    alternative_title: AlternativeTitleForm,
-  }.freeze
-
   # GET /items
   def index
     @items = Item.all
@@ -36,7 +31,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   def update
     if form.save
-      redirect_to item_url(@item), notice: "Item was successfully updated."
+      redirect_to item_url(form.item), notice: "Item was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,19 +49,7 @@ private
     @item ||= params[:id].present? ? Item.find(params[:id]) : Item.new(metadata: {})
   end
 
-  # Only allow a list of trusted parameters through.
-  # REMOVE - params handled by form - so remove
-  def item_params
-    params.require(:item).permit(:title, :metadata, :name)
-  end
-
   def form
-    @form ||= STEPS[step.to_sym].new(item:, params:)
-  end
-
-  def step
-    return STEPS.keys.first if item.last_completed_step.blank?
-
-    STEPS.keys[STEPS.keys.index(item.last_completed_step.to_sym) - 1].presence || STEPS.keys.first
+    @form ||= ItemWorkflow.form_for(item:, params:)
   end
 end
