@@ -1,16 +1,9 @@
-class TitleForm
-  include ActiveModel::Model
-
-  attr_accessor :item, :params
-
+class TitleForm < BaseForm
   validates :title, presence: true
 
-  def save
-    return false if invalid?
-
+  def update_item
     item.name = title
     item.metadata["title"] = title
-    item.save!
   end
 
   def title

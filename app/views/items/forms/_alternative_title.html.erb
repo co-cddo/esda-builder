@@ -1,0 +1,9 @@
+<%= form_with(model: @form.item) do |form| %>
+  <%= render 'shared/form_errors', model: @form %>
+
+  <%= form.govuk_text_field :alternative_title, label: { text: 'Alternative title'} %>
+
+  <div>
+    <%= form.govuk_submit %>
+  </div>
+<% end %>

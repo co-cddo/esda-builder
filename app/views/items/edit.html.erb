@@ -1,8 +1,6 @@
 <h1 class="govuk-heading-l">Editing item</h1>
 
-<%= render "form", item: @item %>
-
-<br>
+<%= render "items/forms/#{@form.template}", form: @form %>
 
 <div>
   <%= govuk_link_to "Show this item", @item %> |
