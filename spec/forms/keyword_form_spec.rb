@@ -14,6 +14,15 @@ RSpec.describe KeywordForm, type: :form do
       expect(item.reload.metadata["keyword"]).to eq([keyword])
     end
 
+    context "with empty keyword" do
+      let(:keyword) { "" }
+
+      it "saves and empty array" do
+        keyword_form.save
+        expect(item.reload.metadata["keyword"]).to eq([])
+      end
+    end
+
     context "with multiple keywords" do
       let(:keywords) { [Faker::Internet.slug, Faker::Internet.slug] }
       let(:keyword) { keywords.join(", ") }

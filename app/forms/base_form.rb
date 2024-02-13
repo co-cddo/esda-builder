@@ -13,6 +13,11 @@ class BaseForm
     item.save!
   end
 
+  def update_item
+    # Put logic that loads data into item here in child object
+    raise "this method should be overwritten in child object"
+  end
+
   def template
     self.class.to_s.underscore.delete_suffix("_form")
   end

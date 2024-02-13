@@ -8,6 +8,7 @@ RSpec.describe "items workflow", type: :request do
       summary: Faker::Lorem.paragraph,
       description: Faker::Lorem.paragraph,
       keyword: Faker::Internet.slug,
+      theme: Faker::Lorem.word,
     }
   end
 
