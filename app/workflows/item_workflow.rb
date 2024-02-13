@@ -6,6 +6,7 @@ class ItemWorkflow
     description: DescriptionForm,
     keyword: KeywordForm,
     theme: ThemeForm,
+    contact_point: ContactPointForm,
   }.freeze
 
   def self.form_for(**options)
