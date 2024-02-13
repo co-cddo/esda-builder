@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SummaryForm, type: :model do
+RSpec.describe SummaryForm, type: :form do
   let(:item) { create :item }
   let(:summary) { Faker::Lorem.paragraph }
   let(:params) do

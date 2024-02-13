@@ -4,6 +4,7 @@ class ItemWorkflow
     alternative_title: AlternativeTitleForm,
     summary: SummaryForm,
     description: DescriptionForm,
+    keyword: KeywordForm,
   }.freeze
 
   def self.form_for(**options)

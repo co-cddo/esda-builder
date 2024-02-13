@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe AlternativeTitleForm, type: :model do
+RSpec.describe AlternativeTitleForm, type: :form do
   let(:item) { create :item }
   let(:alternative_title) { Faker::Company.name }
   let(:params) do

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe TitleForm, type: :model do
+RSpec.describe TitleForm, type: :form do
   let(:item) { build :item, name: nil, metadata: {} }
   let(:title) { Faker::Company.name }
   let(:params) do
