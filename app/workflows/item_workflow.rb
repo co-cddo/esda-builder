@@ -5,6 +5,7 @@ class ItemWorkflow
     summary: SummaryForm,
     description: DescriptionForm,
     keyword: KeywordForm,
+    theme: ThemeForm,
   }.freeze
 
   def self.form_for(**options)
