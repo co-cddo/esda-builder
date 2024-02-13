@@ -1,0 +1,9 @@
+<%= form.govuk_text_field(
+      :contact_name,
+      label: { text: 'Contact name' },
+      value: form.object.metadata.dig('contactPoint','contactName')
+    )%>
+<%= form.govuk_email_field(
+      :email,
+      value: form.object.metadata.dig('contactPoint','email')
+    )%>
