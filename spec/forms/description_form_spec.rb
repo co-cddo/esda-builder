@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe DescriptionForm, type: :model do
+RSpec.describe DescriptionForm, type: :form do
   let(:item) { build :item, name: nil, metadata: {} }
   let(:description) { Faker::Lorem.paragraph }
   let(:params) do
