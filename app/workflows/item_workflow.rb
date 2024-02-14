@@ -7,6 +7,8 @@ class ItemWorkflow
     keyword: KeywordForm,
     theme: ThemeForm,
     contact_point: ContactPointForm,
+    creator: CreatorForm,
+    publisher: PublisherForm,
   }.freeze
 
   def self.form_for(**options)

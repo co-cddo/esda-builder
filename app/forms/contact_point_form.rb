@@ -14,10 +14,10 @@ class ContactPointForm < BaseForm
   end
 
   def contact_name
-    @contact_name ||= params.dig :item, :contact_name
+    @contact_name ||= from_params(:contact_name)
   end
 
   def email
-    @email ||= params.dig :item, :email
+    @email ||= from_params(:email)
   end
 end

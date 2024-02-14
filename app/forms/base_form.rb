@@ -21,4 +21,8 @@ class BaseForm
   def template
     self.class.to_s.underscore.delete_suffix("_form")
   end
+
+  def from_params(label)
+    params.dig(:item, label)
+  end
 end

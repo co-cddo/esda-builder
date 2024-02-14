@@ -1,0 +1,9 @@
+<%= form.govuk_collection_select(
+      :creator,
+      Organisation.all,
+      :id,
+      :name,
+      options: {
+        prompt: "Select an organisation"
+      }
+    ) %>

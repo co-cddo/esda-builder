@@ -4,6 +4,6 @@ class AlternativeTitleForm < BaseForm
   end
 
   def alternative_title
-    @alternative_title ||= params.dig :item, :alternative_title
+    @alternative_title ||= from_params(:alternative_title)
   end
 end

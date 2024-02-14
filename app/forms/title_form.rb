@@ -7,6 +7,6 @@ class TitleForm < BaseForm
   end
 
   def title
-    @title ||= params.dig :item, :title
+    @title ||= from_params(:title)
   end
 end
