@@ -6,6 +6,6 @@ class DescriptionForm < BaseForm
   end
 
   def description
-    @description ||= params.dig :item, :description
+    @description ||= from_params(:description)
   end
 end

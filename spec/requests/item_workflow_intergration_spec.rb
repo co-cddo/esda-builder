@@ -14,6 +14,7 @@ RSpec.describe "items workflow", type: :request do
         email: Faker::Internet.email(domain: "example.com"),
       },
       creator: Organisation.all.sample.id,
+      publisher: Organisation.all.sample.id,
     }
   end
 

@@ -6,6 +6,6 @@ class CreatorForm < BaseForm
   end
 
   def creator
-    @creator ||= params.dig(:item, :creator)
+    @creator ||= from_params(:creator)
   end
 end

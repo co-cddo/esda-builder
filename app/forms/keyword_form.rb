@@ -4,6 +4,6 @@ class KeywordForm < BaseForm
   end
 
   def keyword
-    @keyword ||= params.dig(:item, :keyword).split(/\s*,\s*/)
+    @keyword ||= from_params(:keyword).split(/\s*,\s*/)
   end
 end

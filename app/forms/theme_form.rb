@@ -4,6 +4,6 @@ class ThemeForm < BaseForm
   end
 
   def theme
-    @theme ||= params.dig(:item, :theme).split(/\s*,\s*/)
+    @theme ||= from_params(:theme).split(/\s*,\s*/)
   end
 end
