@@ -15,6 +15,7 @@ RSpec.describe "items workflow", type: :request do
       },
       creator: Organisation.all.sample.id,
       publisher: Organisation.all.sample.id,
+      security_classification: SecurityClassification.values.sample,
     }
   end
 

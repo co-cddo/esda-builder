@@ -9,6 +9,7 @@ class ItemWorkflow
     contact_point: ContactPointForm,
     creator: CreatorForm,
     publisher: PublisherForm,
+    security_classification: SecurityClassificationForm,
   }.freeze
 
   def self.form_for(**options)

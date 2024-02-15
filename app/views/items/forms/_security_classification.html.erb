@@ -1,0 +1,6 @@
+<%= form.govuk_select(:security_classification, label: { text: "Security Classification" }) do %>
+  <%= options_for_select(
+        SecurityClassification.values,
+        selected: form.object.metadata["securityClassification"]
+      ) %>
+<% end %>
