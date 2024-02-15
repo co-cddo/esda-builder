@@ -10,6 +10,8 @@ class ItemWorkflow
     creator: CreatorForm,
     publisher: PublisherForm,
     security_classification: SecurityClassificationForm,
+    identifier: IdentifierForm,
+    related_resource: RelatedResourceForm,
   }.freeze
 
   def self.form_for(**options)
