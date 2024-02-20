@@ -1,2 +1,36 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1 class="govuk-heading-l">Welcome</h1>
+<p  class="govuk-body">
+  This is a prototype tool that demonstrates how a web application could be used by users
+  to build an ESDA submission in a number of steps and via web forms.
+</p>
+<p  class="govuk-body">
+  The advantages of this approach are:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    Each entry is provided with it's own form. This give a place where text can be added
+    to described to the user what information is required for each entry.
+  </li>
+  <li>
+    Validation can be applied for each entry. This give immediate (on submission) feedback
+    on any problems with the input. That feedback will be specific to the current entry
+    so will be easier to understand.
+  </li>
+  <li>
+    Tools such as selection lists and check boxes can be used to ensure users are only
+    provided with compatible options.
+  </li>
+  <li>
+    The tool is hosted on a single web host. That means version control is easier.
+    When the central host app is updated, the update applies to all users.
+  </li>
+  <li>
+    Submission are stored in a central database so can be shared as needed, or passed
+    to additional services (the data marketplace for example) as required.
+  </li>
+</ul>
+
+<p class="govuk-body">
+  You can find existing examples a the <%= govuk_link_to 'Items page', items_path %>,
+  or <%= govuk_link_to 'click here', new_item_path %> to build a new ESDA.
+</p>
