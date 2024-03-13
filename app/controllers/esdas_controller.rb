@@ -1,5 +1,6 @@
 class EsdasController < ApplicationController
   before_action :set_esda, only: %i[show update destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /esdas
   # GET /esdas.json
@@ -14,7 +15,7 @@ class EsdasController < ApplicationController
   # POST /esdas
   # POST /esdas.json
   def create
-    @esda = Esda.new(esda_params)
+    @esda = Esda.new(metadata: params.dig(:esda, :metadata))
 
     if @esda.save
       render :show, status: :created, location: @esda
