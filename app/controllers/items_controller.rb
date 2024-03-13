@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  PUBLISH_URL = ENV.fetch("PUBLISH_URL", "http://example.com")
+
   # GET /items
   def index
     @items = Item.all
@@ -42,6 +44,19 @@ class ItemsController < ApplicationController
   def destroy
     item.destroy!
     redirect_to items_url, notice: "Item was successfully destroyed."
+  end
+
+  def publish
+    header = { "Content-Type" => "application/json" }
+    body = { esda: { metadata: item.metadata } }.to_json
+    response = Faraday.post(PUBLISH_URL, body, header)
+    if response.success? && response.headers["content-type"] =~ /json/
+      json = JSON.parse(response.body)
+      item.update!(esda_id: json["id"])
+      redirect_to @item, notice: "ESDA published to remote site"
+    else
+      redirect_to @item, alert: "Failed to publish: #{response.body}"
+    end
   end
 
 private

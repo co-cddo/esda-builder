@@ -7,6 +7,10 @@
   <pre>
 <%= JSON.pretty_generate(@item.metadata) %>
   </pre>
+  <% if @item.esda_id? %>
+    <h2 class="govuk-heading-m">ESDA ID</h2>
+    <p><%= @item.esda_id %></p>
+  <% end %>
 </div>
 
 <div>
@@ -16,4 +20,6 @@
   </p>
 
   <%= button_to "Destroy this item", @item, method: :delete, class: "govuk-button govuk-button--warning" %>
+
+  <%= button_to "Publish", publish_item_path(@item), method: :post, class: "govuk-button" %>
 </div>

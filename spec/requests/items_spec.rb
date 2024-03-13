@@ -100,4 +100,29 @@ RSpec.describe "/items", type: :request do
       expect(response).to redirect_to(items_url)
     end
   end
+
+  describe "publish /publish" do
+    subject(:publish) { post publish_item_path(item) }
+    let(:esda_id) { SecureRandom.uuid }
+
+    before do
+      stub_request(:post, ItemsController::PUBLISH_URL).with(
+        body: { esda: { metadata: item.metadata } }.to_json,
+      ).to_return(
+        status: 200,
+        body: { id: esda_id }.to_json,
+        headers: { "content-type" => "application/json" },
+      )
+    end
+
+    it "renders successfully" do
+      publish
+      expect(response).to redirect_to(item_path(item))
+    end
+
+    it "stores the esda id on the item" do
+      publish
+      expect(item.reload.esda_id).to eq(esda_id)
+    end
+  end
 end
