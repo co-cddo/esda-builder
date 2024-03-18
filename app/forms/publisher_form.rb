@@ -2,7 +2,7 @@ class PublisherForm < BaseForm
   validates :publisher, presence: true
 
   def update_item
-    item.metadata["publisher"] = [publisher]
+    item.metadata["publisher"] = publisher
   end
 
   def publisher

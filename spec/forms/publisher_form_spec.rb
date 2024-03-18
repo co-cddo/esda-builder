@@ -9,9 +9,9 @@ RSpec.describe PublisherForm, type: :form do
   let(:creator_form) { described_class.new(item:, params:) }
 
   describe "#save" do
-    it "saves the publisher to metadata in an array" do
+    it "saves the publisher to metadata" do
       creator_form.save
-      expect(item.reload.metadata["publisher"]).to eq([organisation])
+      expect(item.reload.metadata["publisher"]).to eq(organisation)
     end
 
     context "with blank entry" do
