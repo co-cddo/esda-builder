@@ -2,17 +2,14 @@ class EsdasController < ApplicationController
   before_action :set_esda, only: %i[show update destroy]
   skip_before_action :verify_authenticity_token
 
-  # GET /esdas
   # GET /esdas.json
   def index
     @esdas = Esda.all
   end
 
-  # GET /esdas/1
   # GET /esdas/1.json
   def show; end
 
-  # POST /esdas
   # POST /esdas.json
   def create
     @esda = Esda.new(metadata: params.dig(:esda, :metadata))
@@ -24,7 +21,6 @@ class EsdasController < ApplicationController
     end
   end
 
-  # PATCH/PUT /esdas/1
   # PATCH/PUT /esdas/1.json
   def update
     if @esda.update(esda_params)
@@ -34,7 +30,6 @@ class EsdasController < ApplicationController
     end
   end
 
-  # DELETE /esdas/1
   # DELETE /esdas/1.json
   def destroy
     @esda.destroy

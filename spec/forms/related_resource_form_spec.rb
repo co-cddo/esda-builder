@@ -9,9 +9,9 @@ RSpec.describe RelatedResourceForm, type: :form do
   let(:related_resource_form) { described_class.new(item:, params:) }
 
   describe "#save" do
-    it "saves the related resource to metadata" do
+    it "saves the related resource to metadata in an array" do
       related_resource_form.save
-      expect(item.reload.metadata["relatedResource"]).to eq(related_resource)
+      expect(item.reload.metadata["relatedResource"]).to eq([related_resource])
     end
 
     context "when title blank" do
